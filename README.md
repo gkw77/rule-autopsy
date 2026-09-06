@@ -1,30 +1,26 @@
 # rule-autopsy
 
-**I autopsied my own agent-rules system against its own most important rule.**
+I maintain a rules system for agent work. One rule in it says: *a rule that isn't measured is
+faith, not fact.* So I ran that rule on the system itself.
 
-My rulebase contains a rule that says: *a rule that isn't measured is faith, not fact.*
-So I ran that rule on the rulebase itself.
+**Result: of 50 rules that claim a measurable effect, 43 never measured it — 86%.**
 
-**Result: 86% of my rules' effect-claims were never measured. My own honesty rule
-convicted my own rules.**
-
-The method re-runs on any rules directory in one command — including yours:
+The method re-runs on any rules directory in one command:
 
 ```
 node verify-claims/verify-claims.js --self-corpus <your-rules-dir>
 ```
 
-The 86% itself is from a private corpus (only aggregate numbers are published). Two of the
-receipts that did measure something reproduce byte-for-byte in this repo; see `receipts/`.
+The 86% comes from a private corpus; only aggregate numbers are published. Two of the
+receipts that did measure something reproduce byte-for-byte in this repo (see `receipts/`).
 Read `docs/METHODOLOGY.md` before quoting any number.
 
 ## The finding
 
-I maintain a 7-stage rules system for agent work (~210 markdown blocks). It tells agents to
-measure before they claim, to carry receipts, to treat unmeasured claims as faith.
-
-I scanned it with the same standard. Of **50 blocks that claim a measurable effect**
-("cuts cost", "reduces false blocks", "intercepts X%"):
+The system is ~210 markdown blocks that tell agents to measure before they claim, to carry
+receipts, to treat unmeasured claims as faith. I scanned it with that same standard. Of
+**50 blocks that claim a measurable effect** ("cuts cost", "reduces false blocks",
+"intercepts X%"):
 
 | verdict | count |
 |---|---|
@@ -34,14 +30,15 @@ I scanned it with the same standard. Of **50 blocks that claim a measurable effe
 | **claimed an effect with no number to check** | 34 |
 | **unproven, total** | **43 / 50 — 86%** |
 
-The system is 78% prose by design — that part is fine; a rules system is supposed to be
-prose. The indictment is narrower and sharper: **of the blocks that promise an effect,
-86% never prove it.** And that 86% is a floor, because manual triage of the 7 "measured"
-flags shows at least 2 are the audit describing itself, not real rigs.
+The system is 78% prose by design; a rules system is supposed to be prose. The problem is
+narrower: of the blocks that promise an effect, 86% never prove it. And that is a floor —
+manual triage of the 7 "measured" flags shows at least 2 are the audit describing itself,
+not real measurements.
 
-## This is the honest part that makes it worth reading
+## What reproduces
 
-Two of the receipts reproduce **exactly today** (output matched the committed report line for line), deterministically, offline:
+Two receipts run here today, offline and deterministically — their output matches the
+committed report line for line:
 
 ```
 cd receipts/gzh-rig && python rig.py
@@ -52,18 +49,18 @@ cd receipts/agent-chief-rig && python scripts/readme_metrics.py
 ```
 
 Three more receipts are documented with their exact limits (one needs a live model key,
-two need your own `~/.claude` session dir) — none are silently skipped.
+two need your own `~/.claude` session dir). None are silently skipped.
 
 ## What this is
 
 Two pieces:
 
-1. **A confession, committed.** `reports/REPORT-2026-09-04.md` is the audit of a real rules
-   system that was designed to be honest and is, by its own standard, mostly faith. Aggregate
-   numbers only — the rule content stays private. That boundary is deliberate.
+1. **A confession.** `reports/REPORT-2026-09-04.md` audits a real rules system that was
+   designed to be honest and is, by its own standard, mostly faith. Aggregate numbers only —
+   the rule content stays private. That boundary is deliberate.
 
-2. **A tool you run on yourself.** `verify-claims/` audits any directory of markdown rules and
-   prints the same verdict ladder. Not "do you have rules?" — *of the rules that promise
+2. **A tool you run on yourself.** `verify-claims/` audits any directory of markdown rules
+   and prints the same verdict ladder. Not "do you have rules?" — *of the rules that promise
    something, how many can you prove?*
 
 ```
