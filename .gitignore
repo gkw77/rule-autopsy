@@ -1,0 +1,18 @@
+# runtime / tooling
+node_modules/
+.DS_Store
+Thumbs.db
+
+# python bytecode (regenerates on every rig run)
+__pycache__/
+*.pyc
+
+# local scan output (session-derived numbers change constantly; commit curated reports only)
+.scan-cache/
+*.tmp
+
+# gzh rig rewrites this probe file on every run
+receipts/gzh-rig/references/_rig_probe.md
+
+# never commit private corpora or session data
+# (if you point the audits at your own rules dir, results go in reports/, not here)
